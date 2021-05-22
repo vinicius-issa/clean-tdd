@@ -1,3 +1,4 @@
+import { MissignParamError } from '../errors/missing-params-error'
 import { SignUpController } from './signup'
 
 describe('Signup Controller', () => {
@@ -12,7 +13,7 @@ describe('Signup Controller', () => {
     }
     const httpResponse = sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Missign param: name'))
+    expect(httpResponse.body).toEqual(new MissignParamError('name'))
   })
 
   test('Show return 400 if no email is provided', () => {
@@ -26,6 +27,6 @@ describe('Signup Controller', () => {
     }
     const httpResponse = sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Missign param: email'))
+    expect(httpResponse.body).toEqual(new MissignParamError('email'))
   })
 })
