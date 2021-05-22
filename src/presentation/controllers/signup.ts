@@ -1,3 +1,4 @@
+import { MissignParamError } from '../errors/missing-params-error'
 import { HttpRequest, HttpResponse } from '../protocols/http'
 
 export class SignUpController {
@@ -5,13 +6,13 @@ export class SignUpController {
     if (httpRequest.body.name === undefined) {
       return {
         statusCode: 400,
-        body: new Error('Missign param: name')
+        body: new MissignParamError('name')
       }
     }
     if (httpRequest.body.email === undefined) {
       return {
         statusCode: 400,
-        body: new Error('Missign param: email')
+        body: new MissignParamError('email')
       }
     }
   }
