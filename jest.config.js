@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /*
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/en/configuration.html
@@ -20,5 +21,7 @@ module.exports = {
   // A map from regular expressions to paths to transformers
   transform: {
     '.*\\.ts$': 'ts-jest'
-  }
+  },
+  preset: '@shelf/jest-mongodb'
+
 }
