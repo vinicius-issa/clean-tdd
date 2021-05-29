@@ -1,6 +1,6 @@
 /* eslint-disable promise/param-names */
 /* eslint-disable @typescript-eslint/return-await */
-import { Encrypter } from '../../protocols/encrypter'
+import { Encrypter } from './db-add-account-protocols'
 import { DbAddAccount } from './db-add-account'
 
 interface SutTypes {
