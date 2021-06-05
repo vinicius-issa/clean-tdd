@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/return-await */
 import { InvalidParamError, MissignParamError, ServerError } from '../../errors'
 import { SignUpController } from './signup'
-import { EmailValidator, AddAccount, AddAccountModel, AccountModel } from './signup-protocols'
+import {
+  EmailValidator,
+  AddAccount,
+  AddAccountModel,
+  AccountModel
+} from './signup-protocols'
 
 interface SutTypes {
   sut: SignUpController
@@ -98,7 +103,9 @@ describe('Signup Controller', () => {
     }
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new MissignParamError('passwordConfirmation'))
+    expect(httpResponse.body).toEqual(
+      new MissignParamError('passwordConfirmation')
+    )
   })
 
   test('Show return 400 if password confirmation fails', async () => {
@@ -113,7 +120,9 @@ describe('Signup Controller', () => {
     }
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new InvalidParamError('passwordConfirmation'))
+    expect(httpResponse.body).toEqual(
+      new InvalidParamError('passwordConfirmation')
+    )
   })
 
   test('Show return 400 if an invalid is provided', async () => {
@@ -151,7 +160,7 @@ describe('Signup Controller', () => {
   test('Show return 500 if Email validator throws', async () => {
     const { sut, emailValidatorStub } = makeSut()
     jest.spyOn(emailValidatorStub, 'isValid').mockImplementationOnce(
-      (email: string) => { throw new Error() }
+      (email: string) => { throw new ServerError('error') }
     )
     const httpRequest = {
       body: {
@@ -163,7 +172,7 @@ describe('Signup Controller', () => {
     }
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
-    expect(httpResponse.body).toEqual(new ServerError())
+    expect(httpResponse.body).toEqual(new ServerError('error'))
   })
 
   test('Should call AddAccount with correct values', async () => {
@@ -204,7 +213,7 @@ describe('Signup Controller', () => {
     }
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
-    expect(httpResponse.body).toEqual(new ServerError())
+    expect(httpResponse.body).toEqual(new ServerError('error'))
   })
 
   test('Should return 200 if valid data is provided', async () => {
