@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import { MissignParamError } from '../../errors'
+import { InvalidParamError, MissignParamError } from '../../errors'
 import { badRequest } from '../../helpers/http-helpers'
 import { Controller, HttpRequest, HttpResponse } from '../../protocols'
 import { EmailValidator } from '../signup/signup-protocols'
@@ -18,7 +18,10 @@ export class LoginController implements Controller {
     if (!httpRequest.body.password) {
       return badRequest(new MissignParamError('password'))
     }
-    this.emailValidator.isValid(httpRequest.body.email)
+    const isValid = this.emailValidator.isValid(httpRequest.body.email)
+    if (!isValid) {
+      return badRequest(new InvalidParamError('email'))
+    }
     return {
       statusCode: 0,
       body: {}
