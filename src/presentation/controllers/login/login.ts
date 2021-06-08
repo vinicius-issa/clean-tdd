@@ -9,6 +9,7 @@ import {
 import { InvalidParamError, MissignParamError } from '../../errors'
 import {
   badRequest,
+  ok,
   serverError,
   unauthorized
 } from '../../helpers/http-helpers'
@@ -43,10 +44,7 @@ export class LoginController implements Controller {
       if (!accessToken) {
         return unauthorized()
       }
-      return {
-        statusCode: 0,
-        body: {}
-      }
+      return ok({ accessToken })
     } catch (error) {
       return serverError(error)
     }
