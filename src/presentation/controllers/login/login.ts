@@ -1,13 +1,17 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import { Authentication } from '../../../domain/usecases/authentication'
+import {
+  Authentication,
+  EmailValidator,
+  Controller,
+  HttpRequest,
+  HttpResponse
+} from './login-protocols'
 import { InvalidParamError, MissignParamError } from '../../errors'
 import {
   badRequest,
   serverError,
   unauthorized
 } from '../../helpers/http-helpers'
-import { Controller, HttpRequest, HttpResponse } from '../../protocols'
-import { EmailValidator } from '../signup/signup-protocols'
 
 export class LoginController implements Controller {
   private readonly emailValidator: EmailValidator
