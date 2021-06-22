@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/return-await */
-import { InvalidParamError, MissignParamError, ServerError } from '../../errors'
+import { MissignParamError, ServerError } from '../../errors'
 import { ok, serverError, badRequest } from '../../helpers/http-helpers'
 import { HttpRequest } from '../../protocols'
 import { SignUpController } from './signup'
@@ -69,7 +69,6 @@ const makeSut = (): SutTypes => {
   const emailValidatorStub = makeEmailValidator()
   const validationStub = makeValidation()
   const sut = new SignUpController(
-    emailValidatorStub,
     addAccountStub,
     validationStub
   )
@@ -83,37 +82,6 @@ const makeSut = (): SutTypes => {
 }
 
 describe('Signup Controller', () => {
-  test('Show return 400 if an invalid email is provided', async () => {
-    const { sut, emailValidatorStub } = makeSut()
-    // emailValidatorStub.isValid = (email: string) => false
-    jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
-    const httpRequest = makeFakeRequest()
-    const httpResponse = await sut.handle(httpRequest)
-    expect(httpResponse).toEqual(
-      badRequest(new InvalidParamError('email'))
-    )
-  })
-
-  test('Should call EmailValitor with correct email', async () => {
-    const { sut, emailValidatorStub } = makeSut()
-    const isValidSpy = jest.spyOn(emailValidatorStub, 'isValid')
-    const httpRequest = makeFakeRequest()
-    await sut.handle(httpRequest)
-    expect(isValidSpy).toHaveBeenCalledWith('any_email@mail.com')
-  })
-
-  test('Show return 500 if Email validator throws', async () => {
-    const { sut, emailValidatorStub } = makeSut()
-    jest.spyOn(emailValidatorStub, 'isValid').mockImplementationOnce(
-      (email: string) => { throw new ServerError('error') }
-    )
-    const httpRequest = makeFakeRequest()
-    const httpResponse = await sut.handle(httpRequest)
-    expect(httpResponse).toEqual(
-      serverError(new ServerError('error'))
-    )
-  })
-
   test('Should call AddAccount with correct values', async () => {
     const { sut, addAccountStub } = makeSut()
     const addSpy = jest.spyOn(addAccountStub, 'add')
