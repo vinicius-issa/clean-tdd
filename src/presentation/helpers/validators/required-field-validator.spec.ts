@@ -7,4 +7,10 @@ describe('RequiredField Validation', () => {
     const error = sut.validate({ name: 'any_name' })
     expect(error).toEqual(new MissignParamError('any_field'))
   })
+
+  test('Should return null if validation succeeds', () => {
+    const sut = new RequiredFieldValidation('field')
+    const error = sut.validate({ field: 'field' })
+    expect(error).toBeNull()
+  })
 })
