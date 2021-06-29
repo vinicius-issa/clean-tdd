@@ -4,7 +4,6 @@ import { ok, serverError, badRequest } from '../../helpers/http-helpers'
 import { HttpRequest } from '../../protocols'
 import { SignUpController } from './signup'
 import {
-  EmailValidator,
   AddAccount,
   AddAccountModel,
   AccountModel,
@@ -13,7 +12,6 @@ import {
 
 interface SutTypes {
   sut: SignUpController
-  emailValidatorStub: EmailValidator
   addAccountStub: AddAccount
   validationStub: Validation
 }
@@ -28,15 +26,6 @@ const makeFakeRequest = (): HttpRequest => (
     }
   }
 )
-
-const makeEmailValidator = (): EmailValidator => {
-  class EmailValidatorStub implements EmailValidator {
-    isValid (email: string): boolean {
-      return true
-    }
-  }
-  return new EmailValidatorStub()
-}
 
 const makeFakeAccount = (): AccountModel => ({
   id: 'valid_id',
@@ -66,7 +55,6 @@ const makeValidation = (): Validation => {
 
 const makeSut = (): SutTypes => {
   const addAccountStub = makeAddAccount()
-  const emailValidatorStub = makeEmailValidator()
   const validationStub = makeValidation()
   const sut = new SignUpController(
     addAccountStub,
@@ -75,7 +63,6 @@ const makeSut = (): SutTypes => {
 
   return {
     sut,
-    emailValidatorStub,
     addAccountStub,
     validationStub
   }

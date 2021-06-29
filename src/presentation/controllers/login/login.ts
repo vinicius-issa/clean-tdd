@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import {
   Authentication,
-  EmailValidator,
   Controller,
   HttpRequest,
-  HttpResponse
+  HttpResponse,
+  Validation
 } from './login-protocols'
-import { InvalidParamError, MissignParamError } from '../../errors'
 import {
   badRequest,
   ok,
@@ -15,31 +14,21 @@ import {
 } from '../../helpers/http-helpers'
 
 export class LoginController implements Controller {
-  private readonly emailValidator: EmailValidator
+  private readonly validation: Validation
   private readonly authentication: Authentication
 
-  constructor (emailValidator: EmailValidator, authentication: Authentication) {
-    this.emailValidator = emailValidator
+  constructor (validation: Validation, authentication: Authentication) {
+    this.validation = validation
     this.authentication = authentication
   }
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
+      const error = this.validation.validate(httpRequest.body)
+      if (error !== null) {
+        return badRequest(error)
+      }
       const { email, password } = httpRequest.body
-      const requiredFields = [
-        'email',
-        'password'
-      ]
-
-      for (const field of requiredFields) {
-        if (httpRequest.body[field] === undefined) {
-          return badRequest(new MissignParamError(field))
-        }
-      }
-      const isValid = this.emailValidator.isValid(email)
-      if (!isValid) {
-        return badRequest(new InvalidParamError('email'))
-      }
       const accessToken = await this.authentication.auth(email, password)
       if (!accessToken) {
         return unauthorized()
