@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { InvalidParamError } from '../../errors'
-import { Validation } from './validation'
+import { Validation } from '../../protocols/validation'
 
 export class CompareFieldsdValidation implements Validation {
   private readonly fieldName: string
