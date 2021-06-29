@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/return-await */
 import { MissignParamError, ServerError } from '../../errors'
-import { ok, serverError, badRequest } from '../../helpers/http-helpers'
+import { ok, serverError, badRequest } from '../../helpers/http/http-helpers'
 import { HttpRequest } from '../../protocols'
 import { SignUpController } from './signup'
 import {

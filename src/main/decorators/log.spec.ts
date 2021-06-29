@@ -2,7 +2,7 @@
 import { LogErrorRepository } from '../../data/protocols/log-error-repository'
 import { AccountModel } from '../../domain/models/account'
 import { ServerError } from '../../presentation/errors'
-import { serverError, ok } from '../../presentation/helpers/http-helpers'
+import { serverError, ok } from '../../presentation/helpers/http/http-helpers'
 import {
   Controller,
   HttpRequest,

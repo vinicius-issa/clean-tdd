@@ -4,7 +4,7 @@ import {
   ok,
   serverError,
   unauthorized
-} from '../../helpers/http-helpers'
+} from '../../helpers/http/http-helpers'
 import { MissignParamError } from '../../errors'
 import {
   HttpRequest,

@@ -1,5 +1,5 @@
 import { AddAccount } from '../../../domain/usecases/add-account'
-import { badRequest, serverError, ok } from '../../helpers/http-helpers'
+import { badRequest, serverError, ok } from '../../helpers/http/http-helpers'
 import {
   Controller,
   HttpRequest,
