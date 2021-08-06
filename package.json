@@ -41,9 +41,11 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
+    "@types/jsonwebtoken": "^8.5.4",
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "fast-glob": "^3.2.5",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.9",
     "validator": "^13.6.0"
   }
