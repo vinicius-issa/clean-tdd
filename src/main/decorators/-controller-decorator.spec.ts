@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/return-await */
 import {
   LogErrorRepository
-} from '../../data/protocols/db/log-error-repository'
+} from '../../data/protocols/db/log/log-error-repository'
 import { AccountModel } from '../../domain/models/account'
 import { ServerError } from '../../presentation/errors'
 import { serverError, ok } from '../../presentation/helpers/http/http-helpers'
@@ -10,7 +10,7 @@ import {
   HttpRequest,
   HttpResponse
 } from '../../presentation/protocols'
-import { LogControllerDecorator } from './log'
+import { LogControllerDecorator } from './log-controller-decorator'
 
 interface SutTypes {
   sut: LogControllerDecorator

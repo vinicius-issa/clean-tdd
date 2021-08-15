@@ -1,4 +1,4 @@
-import { LoginController } from './login'
+import { LoginController } from './login-controller'
 import {
   badRequest,
   ok,
@@ -10,7 +10,7 @@ import {
   HttpRequest,
   Authentication,
   Validation
-} from './login-protocols'
+} from './login-controller-protocols'
 import { AuthenticationModel } from '../../../domain/usecases/authentication'
 
 interface SutTypes {

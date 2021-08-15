@@ -2,13 +2,13 @@
 import { MissignParamError, ServerError } from '../../errors'
 import { ok, serverError, badRequest } from '../../helpers/http/http-helpers'
 import { HttpRequest } from '../../protocols'
-import { SignUpController } from './signup'
+import { SignUpController } from './signup-controller'
 import {
   AddAccount,
   AddAccountModel,
   AccountModel,
   Validation
-} from './signup-protocols'
+} from './signup-controller-protocols'
 
 interface SutTypes {
   sut: SignUpController
