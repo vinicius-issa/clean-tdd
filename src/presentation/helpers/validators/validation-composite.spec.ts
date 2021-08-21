@@ -3,7 +3,7 @@ import { Validation } from '../../protocols/validation'
 import { ValidationComposite } from './validation-composite'
 
 interface SutTypes {
-  sut: ValidationComposite,
+  sut: ValidationComposite
   validationStubs: Validation[]
 }
 

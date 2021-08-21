@@ -10,7 +10,7 @@ import { DbAddAccount } from './db-add-account'
 
 interface SutTypes {
   sut: DbAddAccount
-  hasherStub: Hasher,
+  hasherStub: Hasher
   addAccountRepositoryStub: AddAccountRepository
 }
 

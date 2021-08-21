@@ -1,14 +1,9 @@
 {
   "extends": ["standard-with-typescript", "plugin:promise/recommended"],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.eslint.json"
   },
   "rules": {
-    "@typescript-eslint/camelcase": ["off"],
-    "no-unused-expressions": 0,
-    "space-before-function-paren": 0,
-    "@typescript-eslint/member-delimiter-style": 0,
-    "no-useless-constructor": 0,
-    "max-len": [2, {"code": 80, "tabWidth": 2, "ignoreUrls": true}]
+    "@typescript-eslint/strict-boolean-expression": "off"
   }
 }
