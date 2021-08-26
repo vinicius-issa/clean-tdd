@@ -1,0 +1,24 @@
+version: "3"
+services: 
+  mongo:
+    container_name: mongo-container
+    image: mongo:4
+    restart: always
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+  api:
+    container_name: api-container
+    build:
+      context: .
+      args: 
+        - MONGO_URL='mongodb://mongo:27017/clean-node-api'
+    restart: always
+    image: clean-node-api
+    ports: 
+      - "5000:5000"
+    links:
+      - mongo
+    depends_on: 
+      - mongo
