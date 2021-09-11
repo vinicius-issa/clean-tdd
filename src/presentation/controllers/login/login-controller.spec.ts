@@ -82,7 +82,7 @@ describe('Login Controller', () => {
     expect(httpResponse).toEqual(unauthorized())
   })
 
-  test('Should return 500 if EmailValidator throws', async () => {
+  test('Should return 500 if Authentication throws', async () => {
     const { sut, authenticationStub } = makeSut()
     const httpRequest = makeFakeRequest()
     jest.spyOn(authenticationStub, 'auth').mockImplementationOnce(async () => {
