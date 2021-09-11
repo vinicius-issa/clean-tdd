@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { AddAccount } from '../../../domain/usecases/add-account'
-import { badRequest, serverError, ok } from '../../helpers/http/http-helpers'
+import { EmailInUseError } from '../../errors'
+import { badRequest, serverError, ok, forbideen } from '../../helpers/http/http-helpers'
 import {
   Controller,
   HttpRequest,
@@ -24,11 +26,15 @@ export class SignUpController implements Controller {
 
       const { email, password, name } = httpRequest.body
 
-      await this.addAccount.add({
+      const account = await this.addAccount.add({
         name,
         email,
         password
       })
+
+      if (!account) {
+        return forbideen(new EmailInUseError())
+      }
 
       const accessToken = await this.authentication.auth({
         email,
