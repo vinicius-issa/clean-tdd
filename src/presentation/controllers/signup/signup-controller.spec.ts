@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/return-await */
-import { MissignParamError, ServerError } from '../../errors'
-import { ok, serverError, badRequest } from '../../helpers/http/http-helpers'
+import { EmailInUseError, MissignParamError, ServerError } from '../../errors'
+import { ok, serverError, badRequest, forbideen } from '../../helpers/http/http-helpers'
 import { HttpRequest } from '../../protocols'
 import { SignUpController } from './signup-controller'
 import {
@@ -157,5 +157,15 @@ describe('Signup Controller', () => {
     })
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse).toEqual(serverError(new Error()))
+  })
+
+  test('Should return 403 if AddAccount returns null', async () => {
+    const { sut, addAccountStub } = makeSut()
+    jest.spyOn(addAccountStub, 'add').mockReturnValueOnce(new Promise(
+      resolve => resolve(null)
+    ))
+    const httpRequest = makeFakeRequest()
+    const httpResponse = await sut.handle(httpRequest)
+    expect(httpResponse).toEqual(forbideen(new EmailInUseError()))
   })
 })
