@@ -15,9 +15,13 @@ services:
       args: 
         - MONGO_URL='mongodb://mongo:27017/clean-node-api'
     restart: always
-    image: clean-node-api
+    command: npm run debug
+    volumes: 
+      - ./dist:/usr/app/dist
+      - ./package.json:/usr/app/package.json
     ports: 
       - "5000:5000"
+      - "9222:9222"
     links:
       - mongo
     depends_on: 
