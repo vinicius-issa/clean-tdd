@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import { MissignParamError } from '../../errors'
-import { Validation } from '../../protocols/validation'
+import { MissignParamError } from '../../presentation/errors'
+import { Validation } from '../../presentation/protocols/validation'
 
 export class RequiredFieldValidation implements Validation {
   constructor (
