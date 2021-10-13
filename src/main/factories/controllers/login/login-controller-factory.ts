@@ -1,7 +1,7 @@
 import { Controller } from '../../../../presentation/protocols'
 import {
   LoginController
-} from '../../../../presentation/controllers/login/login-controller'
+} from '../../../../presentation/controllers/login/login/login-controller'
 import {
   makeLoginValidation
 } from './login-validation-factory'

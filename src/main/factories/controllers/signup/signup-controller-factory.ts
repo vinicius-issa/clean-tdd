@@ -1,6 +1,6 @@
 import {
   SignUpController
-} from '../../../../presentation/controllers/signup/signup-controller'
+} from '../../../../presentation/controllers/login/signup/signup-controller'
 import {
   Controller
 } from '../../../../presentation/protocols'

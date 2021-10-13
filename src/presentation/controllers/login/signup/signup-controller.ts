@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import { AddAccount } from '../../../domain/usecases/add-account'
-import { EmailInUseError } from '../../errors'
-import { badRequest, serverError, ok, forbideen } from '../../helpers/http/http-helpers'
+import { AddAccount } from '../../../../domain/usecases/add-account'
+import { EmailInUseError } from '../../../errors'
+import { badRequest, serverError, ok, forbideen } from '../../../helpers/http/http-helpers'
 import {
   Controller,
   HttpRequest,

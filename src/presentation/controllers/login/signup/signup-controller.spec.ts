@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/return-await */
-import { EmailInUseError, MissignParamError, ServerError } from '../../errors'
-import { ok, serverError, badRequest, forbideen } from '../../helpers/http/http-helpers'
-import { HttpRequest } from '../../protocols'
+import { EmailInUseError, MissignParamError, ServerError } from '../../../errors'
+import { ok, serverError, badRequest, forbideen } from '../../../helpers/http/http-helpers'
+import { HttpRequest } from '../../../protocols'
 import { SignUpController } from './signup-controller'
 import {
   AddAccount,
